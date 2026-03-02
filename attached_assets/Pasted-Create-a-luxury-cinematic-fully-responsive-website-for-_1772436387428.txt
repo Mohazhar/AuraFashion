@@ -1,0 +1,246 @@
+Create a luxury, cinematic, fully responsive website for a boutique and bridal makeup studio.
+
+🏷 Brand Details
+
+Brand Name: AURA FASHION
+Location: Coimbatore, Tamil Nadu, India
+Contact Number: +91 7806856626
+WhatsApp Link: https://wa.me/917806856626
+
+Business Type:
+
+Boutique
+
+Bridal Makeup Artist
+
+🎨 UI / Design Requirements
+
+Style:
+
+Cinematic
+
+Luxury
+
+Elegant
+
+Feminine
+
+Premium
+
+Color Theme (match attached logo):
+
+Deep navy / dark gradient background
+
+Iridescent gold–pink–purple gradient accents
+
+Soft glow highlights
+
+Glassmorphism cards
+
+Subtle light flare effects
+
+Typography:
+
+Elegant serif for headings
+
+Modern clean sans-serif for body
+
+Script style for logo section
+
+Effects:
+
+Smooth fade-in animations
+
+Luxury hover glow on buttons
+
+Scroll animations
+
+Parallax hero section
+
+📱 Layout Structure
+1️⃣ Hero Section (Full Screen)
+
+Background:
+
+Cinematic bridal boutique / makeup slow-motion video
+
+Headline:
+“Luxury Bridal Boutique & Makeup Studio in Coimbatore”
+
+Subtext:
+Designer Blouses | Bridal Wear | HD & Airbrush Makeup
+
+Buttons:
+
+Book on WhatsApp
+
+Call Now
+
+WhatsApp button must open:
+https://wa.me/917806856626?text=Hi%20AURA%20FASHION,%20I%20would%20like%20to%20book%20an%20appointment
+.
+
+2️⃣ About Section
+
+Title:
+About AURA FASHION
+
+Content:
+AURA FASHION is a premium boutique and bridal makeup studio in Coimbatore offering designer blouses, bridal wear, and professional makeup services tailored for modern brides.
+
+Include:
+
+Founder introduction
+
+Why choose us (3–4 highlight points)
+
+Premium image section
+
+3️⃣ Services Section (Grid Layout with Glass Cards)
+
+Boutique Services:
+
+Designer Blouse Stitching
+
+Custom Bridal Wear
+
+Saree Styling
+
+Alterations
+
+Makeup Services:
+
+Bridal Makeup
+
+Engagement Makeup
+
+Party Makeup
+
+HD / Airbrush Makeup
+
+Each card must include:
+
+Image
+
+Short description
+
+“Book Now” WhatsApp button
+
+4️⃣ Portfolio Section
+
+Masonry or Instagram-style gallery
+
+Bridal makeup images
+
+Boutique designs
+
+Before/After slider effect
+
+Lightbox preview
+
+5️⃣ Testimonials Section
+
+Luxury card carousel with:
+
+Client name
+
+5-star rating
+
+Short review
+
+6️⃣ Contact Section
+
+Display:
+
+Phone: +91 7806856626
+
+WhatsApp button
+
+Contact form (Name, Phone, Message)
+
+Embedded Google Map (Coimbatore location)
+
+📲 Sticky Elements
+
+Floating WhatsApp button bottom-right
+
+Sticky transparent navbar
+
+Smooth scroll navigation
+
+⚡ Technical Requirements
+
+Framework:
+Next.js (App Router)
+
+Styling:
+Tailwind CSS
+
+Animations:
+Framer Motion
+
+SEO:
+
+Proper H1, H2 structure
+
+Meta title:
+AURA FASHION | Bridal Boutique & Makeup Artist in Coimbatore
+
+Meta description:
+AURA FASHION is a premium bridal boutique and makeup studio in Coimbatore offering designer blouses, bridal wear and professional makeup services. Call 7806856626.
+
+Open Graph tags
+
+Structured data (LocalBusiness schema)
+
+Sitemap.xml
+
+Robots.txt
+
+Performance:
+
+Image optimization (WebP)
+
+Lazy loading
+
+Mobile-first responsive design
+
+Page speed optimized
+
+📈 SEO Keywords to Include Naturally
+
+Boutique in Coimbatore
+
+Bridal Makeup Artist in Coimbatore
+
+Designer Blouse in Coimbatore
+
+Bridal Wear in Coimbatore
+
+AURA FASHION Coimbatore
+
+🎁 Optional Premium Features
+
+Appointment booking calendar
+
+Blog section for SEO
+
+Instagram feed integration
+
+Offer popup banner
+
+Dark/light toggle with luxury theme
+
+🎯 Final Output Expectations
+
+Fully responsive
+
+Cinematic premium look
+
+Fast loading
+
+SEO optimized
+
+WhatsApp integrated
+
+Clean professional code structure
