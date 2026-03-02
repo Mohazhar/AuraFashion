@@ -10,11 +10,16 @@ export default function Footer() {
     <footer className="bg-background pt-20 pb-10 border-t border-primary/10 relative">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="font-script text-4xl text-primary luxury-gradient-text tracking-wider inline-block mb-6">
-              Aura Fashion
+            <Link href="/" className="inline-block mb-6">
+              <img
+                src="/favicon.png"
+                alt="Aura Fashion Logo"
+                className="h-16 w-auto object-contain rounded-md"
+              />
+              <span className="sr-only">Aura Fashion</span>
             </Link>
             <p className="text-muted-foreground text-sm font-light leading-relaxed mb-6">
               A premium boutique and bridal makeup studio in Coimbatore offering bespoke designer wear and flawless makeup services for the modern bride.
@@ -66,8 +71,8 @@ export default function Footer() {
                 </a>
               </p>
               <p>
-                <a 
-                  href="https://wa.me/917806856626" 
+                <a
+                  href="https://wa.me/917806856626"
                   target="_blank" rel="noopener noreferrer"
                   className="hover:text-primary transition-colors"
                 >
@@ -83,8 +88,8 @@ export default function Footer() {
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} AURA FASHION. All rights reserved.
           </p>
-          
-          <button 
+
+          <button
             onClick={scrollToTop}
             className="flex items-center gap-2 text-xs uppercase tracking-widest text-primary hover:text-primary/80 transition-colors"
           >

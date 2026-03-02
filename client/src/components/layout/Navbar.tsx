@@ -26,13 +26,17 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "glass-nav py-4" : "bg-transparent py-6"
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "glass-nav py-4" : "bg-transparent py-6"
+        }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-        <Link href="/" className="font-script text-3xl md:text-4xl text-primary luxury-gradient-text tracking-wider">
-          Aura Fashion
+        <Link href="/" className="flex items-center">
+          <img
+            src="/favicon.png"
+            alt="Aura Fashion Logo"
+            className="h-12 md:h-16 w-auto object-contain transition-transform duration-300 hover:scale-105 rounded-md"
+          />
+          <span className="sr-only">Aura Fashion</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -71,15 +75,15 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full glass-nav flex flex-col items-center py-6 space-y-6 md:hidden border-t border-primary/20"
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full left-0 w-full glass-nav flex flex-col items-center justify-center min-h-[calc(100vh-80px)] pb-20 space-y-8 md:hidden border-t border-primary/20 bg-background/95 backdrop-blur-xl"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-lg tracking-widest text-foreground hover:text-primary transition-colors"
+                className="text-2xl tracking-widest text-foreground hover:text-primary transition-colors py-2"
               >
                 {link.name}
               </a>
@@ -88,7 +92,7 @@ export default function Navbar() {
               href="https://wa.me/917806856626?text=Hi%20AURA%20FASHION,%20I%20would%20like%20to%20book%20an%20appointment"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm uppercase tracking-widest"
+              className="mt-8 bg-primary text-primary-foreground px-10 py-4 rounded-full text-sm uppercase tracking-widest w-4/5 text-center max-w-xs hover-glow"
             >
               Book Now
             </a>
