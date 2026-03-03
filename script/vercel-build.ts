@@ -1,14 +1,22 @@
 /**
  * Vercel Build Script
  * 
- * Bundles the server into a single file (api/index.js) so that
- * Vercel has ZERO module resolution to do at runtime.
- * All local imports (routes, storage, schema) get inlined by esbuild.
+ * 1. Builds the React client with Vite → dist/public (served by Vercel CDN)
+ * 2. Bundles the server into a single file api/index.js (serverless function)
  */
 import { build } from "esbuild";
+import { build as viteBuild } from "vite";
 import { readFile, mkdir } from "fs/promises";
 
 async function buildForVercel() {
+    // Step 1: Build the React client with Vite
+    console.log("📦 Building client with Vite...");
+    await viteBuild();
+    console.log("✅ Client built to dist/public");
+
+    // Step 2: Bundle the server into a single file for Vercel
+    console.log("📦 Bundling server for Vercel...");
+
     const pkg = JSON.parse(await readFile("package.json", "utf-8"));
 
     // All npm packages stay as external (Vercel installs them via npm install)
@@ -19,8 +27,6 @@ async function buildForVercel() {
 
     // Ensure api/ directory exists
     await mkdir("api", { recursive: true });
-
-    console.log("Bundling server for Vercel...");
 
     await build({
         entryPoints: ["server/index.ts"],
@@ -34,16 +40,15 @@ async function buildForVercel() {
             "process.env.NODE_ENV": '"production"',
             "process.env.VERCEL": '"1"',
         },
-        // Keep readable for debugging
         minify: false,
         logLevel: "info",
-        // Ensure proper ESM banner for compatibility
         banner: {
             js: "// Bundled by esbuild for Vercel deployment",
         },
     });
 
     console.log("✅ Server bundled to api/index.js");
+    console.log("🚀 Vercel build complete!");
 }
 
 buildForVercel().catch((err) => {
