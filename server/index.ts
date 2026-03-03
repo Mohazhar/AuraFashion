@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes.js";
-import { serveStatic } from "./static.js";
+import { registerRoutes } from "./routes.ts";
+import { serveStatic } from "./static.ts";
 import { createServer } from "http";
 
 const app = express();
@@ -79,7 +79,7 @@ app.get("/favicon.ico", (_req, res) => {
   if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
     serveStatic(app);
   } else if (process.env.NODE_ENV !== "production") {
-    const { setupVite } = await import("./vite.js");
+    const { setupVite } = await import("./vite.ts");
     await setupVite(httpServer, app);
   }
 
