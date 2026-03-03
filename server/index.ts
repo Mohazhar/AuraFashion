@@ -60,6 +60,11 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Handle /favicon.ico requests gracefully (browser auto-requests this)
+  app.get("/favicon.ico", (_req, res) => {
+    res.status(204).end();
+  });
+
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
