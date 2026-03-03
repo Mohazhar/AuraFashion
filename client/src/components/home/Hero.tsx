@@ -35,7 +35,6 @@ export default function Hero() {
         >
           Luxury Bridal Boutique & <br />
           <span className="luxury-gradient-text italic font-normal">Makeup Studio</span> <br />
-          in Coimbatore
         </motion.h1>
 
         <motion.p
