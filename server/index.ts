@@ -59,12 +59,12 @@ app.use((req, res, next) => {
   next();
 });
 
-(async () => {
-  // Handle /favicon.ico requests gracefully (browser auto-requests this)
-  app.get("/favicon.ico", (_req, res) => {
-    res.status(204).end();
-  });
+// Handle /favicon.ico requests gracefully (browser auto-requests this)
+app.get("/favicon.ico", (_req, res) => {
+  res.status(204).end();
+});
 
+(async () => {
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
@@ -87,18 +87,21 @@ app.use((req, res, next) => {
     await setupVite(httpServer, app);
   }
 
-  // Changed default port to 5001 to avoid Windows ENOTSUP/Access errors on 5000
-  const port = parseInt(process.env.PORT || "5001", 10);
+  // Only listen when NOT running on Vercel (Vercel handles this via the export)
+  if (!process.env.VERCEL) {
+    const port = parseInt(process.env.PORT || "5001", 10);
 
-  httpServer.listen(
-    {
-      port,
-      // Using 127.0.0.1 instead of 0.0.0.0 for better Windows compatibility
-      host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
-      // Removed reusePort: true as it is not supported on Windows (causes ENOTSUP)
-    },
-    () => {
-      log(`serving on port ${port}`);
-    },
-  );
+    httpServer.listen(
+      {
+        port,
+        host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
+      },
+      () => {
+        log(`serving on port ${port}`);
+      },
+    );
+  }
 })();
+
+// Export the Express app for Vercel Serverless Functions
+export default app;
