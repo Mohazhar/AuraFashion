@@ -1,6 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes.js";
-import { serveStatic } from "./static.js";
 import { createServer } from "http";
 
 const app = express();
@@ -80,10 +79,19 @@ app.get("/favicon.ico", (_req, res) => {
     return res.status(status).json({ message });
   });
 
-  if (process.env.NODE_ENV === "production") {
+  // On Vercel, static files are served by the CDN — skip serveStatic entirely.
+  // Locally in production, serve from dist/public.
+  // In development, use Vite's dev server.
+  if (process.env.VERCEL) {
+    // Vercel handles static file serving via its CDN
+    log("Running on Vercel — static files served by CDN");
+  } else if (process.env.NODE_ENV === "production") {
+    const { serveStatic } = await import("./static.js");
     serveStatic(app);
   } else {
-    const { setupVite } = await import("./vite.js");
+    // Use a variable path to prevent bundlers from statically analyzing this import
+    const vitePath = "./vite.js";
+    const { setupVite } = await import(vitePath);
     await setupVite(httpServer, app);
   }
 
