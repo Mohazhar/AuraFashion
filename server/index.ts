@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
-import { serveStatic } from "./static";
+import { registerRoutes } from "./routes.js";
+import { serveStatic } from "./static.js";
 import { createServer } from "http";
 
 const app = express();
@@ -78,7 +78,7 @@ app.use((req, res, next) => {
   if (process.env.NODE_ENV === "production") {
     serveStatic(app);
   } else {
-    const { setupVite } = await import("./vite");
+    const { setupVite } = await import("./vite.js");
     await setupVite(httpServer, app);
   }
 
@@ -89,7 +89,7 @@ app.use((req, res, next) => {
     {
       port,
       // Using 127.0.0.1 instead of 0.0.0.0 for better Windows compatibility
-      host: "127.0.0.1", 
+      host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
       // Removed reusePort: true as it is not supported on Windows (causes ENOTSUP)
     },
     () => {
