@@ -1,49 +1,46 @@
-import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes.js";
-import { serveStatic } from "./static.js";
-import { createServer } from "http";
+// Bundled by esbuild for Vercel deployment
 
-const app = express();
-const httpServer = createServer(app);
+// server/index.ts
+import express2 from "express";
 
-declare module "http" {
-  interface IncomingMessage {
-    rawBody: unknown;
-  }
+// server/routes.ts
+async function registerRoutes(httpServer2, app2) {
+  return httpServer2;
 }
 
+// server/static.ts
+import express from "express";
+
+// server/index.ts
+import { createServer } from "http";
+var app = express2();
+var httpServer = createServer(app);
 app.use(
-  express.json({
+  express2.json({
     verify: (req, _res, buf) => {
       req.rawBody = buf;
-    },
-  }),
+    }
+  })
 );
-
-app.use(express.urlencoded({ extended: false }));
-
-export function log(message: string, source = "express") {
-  const formattedTime = new Date().toLocaleTimeString("en-US", {
+app.use(express2.urlencoded({ extended: false }));
+function log(message, source = "express") {
+  const formattedTime = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
     second: "2-digit",
-    hour12: true,
+    hour12: true
   });
-
   console.log(`${formattedTime} [${source}] ${message}`);
 }
-
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
-
+  let capturedJsonResponse = void 0;
   const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
+  res.json = function(bodyJson, ...args) {
     capturedJsonResponse = bodyJson;
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
-
   res.on("finish", () => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
@@ -54,19 +51,14 @@ app.use((req, res, next) => {
       log(logLine);
     }
   });
-
   next();
 });
-
-// Handle /favicon.ico requests gracefully (browser auto-requests this)
 app.get("/favicon.ico", (_req, res) => {
   res.status(204).end();
 });
-
 (async () => {
   await registerRoutes(httpServer, app);
-
-  app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
+  app.use((err, _req, res, next) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
     console.error("Internal Server Error:", err);
@@ -75,28 +67,27 @@ app.get("/favicon.ico", (_req, res) => {
     }
     return res.status(status).json({ message });
   });
-
-  if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
+  if (false) {
     serveStatic(app);
-  } else if (process.env.NODE_ENV !== "production") {
-    const { setupVite } = await import("./vite.js");
+  } else if (false) {
+    const { setupVite } = await null;
     await setupVite(httpServer, app);
   }
-
-  // Only listen locally — Vercel handles the port automatically
-  if (!process.env.VERCEL) {
+  if (false) {
     const port = parseInt(process.env.PORT || "5001", 10);
     httpServer.listen(
       {
         port,
-        host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
+        host: true ? "0.0.0.0" : "127.0.0.1"
       },
       () => {
         log(`serving on port ${port}`);
-      },
+      }
     );
   }
 })();
-
-// CRITICAL: Export the app for Vercel Serverless Functions
-export default app;
+var index_default = app;
+export {
+  index_default as default,
+  log
+};
